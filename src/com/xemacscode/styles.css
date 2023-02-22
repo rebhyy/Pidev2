@@ -1,7 +1,15 @@
 /* 
-    Created on : Feb 22, 2020, 2:39:34 PM
-    Author     : Admin
+    Author     : Rebhy
 */
+.primary-color-profile{
+    -fx-background-color: #13123a
+}
+.button_edit{
+    -fx-background-color: #242551;
+    -fx-background-radius: 30;
+
+    
+}
 .parent{
     -fx-background-color: transparent;
 }
@@ -100,6 +108,10 @@
   height: 8px;
   border-radius: 50%;
   background: white;
+}
+
+.primary-color-profile{
+    -fx-background-color: #13123a
 }
 
 
