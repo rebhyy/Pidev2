@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -62,16 +64,35 @@ public class SignUpController {
 
         // validate input
         if (firstName.isEmpty() || lastName.isEmpty() || phoneString.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            System.err.println("Error: All fields are required");
-            return;
+                Alert alert = new Alert(AlertType.ERROR);
+                    alert.setHeaderText("Invalid Input");
+                    alert.setContentText("Make sure you typed everything");
+                    alert.showAndWait();           
+                    return;
         }
+        
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        if (!email.matches(emailRegex)) {
+    Alert alert = new Alert(AlertType.ERROR);
+    alert.setHeaderText("Invalid Email");
+    alert.setContentText("Please enter a valid email address.");
+    alert.showAndWait();
+    return;
+}
+
+
 
         int phone;
         try {
             phone = Integer.parseInt(phoneString);
         } catch (NumberFormatException e) {
             System.err.println("Error: Phone number must be an integer");
-            return;
+            Alert alert = new Alert(AlertType.ERROR);
+                    alert.setHeaderText("Invalid Phone Number");
+                    alert.setContentText("Phone number must be an integer. Please try again.");
+                    alert.showAndWait();           
+                    return;
+           
         }
         Connection conn = DataSource.getInstance().getCnx();
 
@@ -82,6 +103,14 @@ public class SignUpController {
 
         // insert the new user into the database
         insertPst(user);
+        
+        
+            Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setHeaderText("Sign up completed!");
+    alert.setContentText("Welcome " + firstName + " " + lastName + "!");
+    alert.showAndWait();
+        
+        
     }     
          public void insertPst(User user) {
              Connection conn = DataSource.getInstance().getCnx();
