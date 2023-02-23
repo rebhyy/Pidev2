@@ -4,15 +4,16 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="740.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.xemacscode.LoggedInController">
    <left>
       <VBox prefHeight="200.0" prefWidth="340.0" styleClass="primary-color-profile" stylesheets="@styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -21,12 +22,17 @@
                   <Insets top="50.0" />
                </VBox.margin>
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="pdpImage" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../Users/Rebhy/Pictures/aaa.jpg" />
                      </image>
                   </ImageView>
-                  <Label text="Ahmed Rebhi" textFill="WHITE">
+                  <Label fx:id="fnamelabel1" prefHeight="36.0" prefWidth="89.0" text="Ahmed " textFill="WHITE">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lnamelabel" prefHeight="36.0" prefWidth="89.0" text="Rebhi" textFill="WHITE">
                      <font>
                         <Font size="25.0" />
                      </font>
@@ -55,7 +61,7 @@
                   </HBox>
                   <HBox prefHeight="55.0" prefWidth="340.0">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="SETTING" size="3.2em">
+                        <FontAwesomeIconView fill="WHITE" size="3.2em">
                            <HBox.margin>
                               <Insets left="20.0" right="30.0" />
                            </HBox.margin>
@@ -100,4 +106,95 @@
          </children>
       </VBox>
    </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="secondary-color-profile" stylesheets="@styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="18.0" prefWidth="925.0" text="Profile Settings" textFill="WHITE">
+               <font>
+                  <Font size="45.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" left="50.0" right="50.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <VBox prefHeight="200.0" prefWidth="100.0" spacing="50.0">
+               <children>
+                  <Label prefHeight="18.0" prefWidth="925.0" text="Profile Details" textFill="WHITE">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" right="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="28.0" prefWidth="154.0" text="First Name" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Pane prefHeight="33.0" prefWidth="200.0" />
+                        <TextField fx:id="firstnamefield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="28.0" prefWidth="154.0" text="Last Name" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Pane prefHeight="33.0" prefWidth="200.0" />
+                        <TextField fx:id="lastnamefield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="28.0" prefWidth="154.0" text="Phone Number" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Pane prefHeight="33.0" prefWidth="200.0" />
+                        <TextField fx:id="phonefield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="28.0" prefWidth="154.0" text="Password" textFill="WHITE">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Pane prefHeight="33.0" prefWidth="200.0" />
+                        <TextField fx:id="pwdfield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                     </children>
+                  </HBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="savebtn" contentDisplay="CENTER" mnemonicParsing="false" prefWidth="100.0" styleClass="button_edit" stylesheets="@styles.css" text="Save Changes" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="400.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

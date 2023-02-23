@@ -16,7 +16,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import service.LoggedInUser;
 import service.UserManagement;
 import utils.DataSource;
 
@@ -31,16 +33,22 @@ public class SignInController implements Initializable {
     @FXML
     private Button signinBtn;
 
+    @FXML
+    private Label fnamelabel1;
+
+    @FXML
+    private Label lnamelabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
 
-    public void signIn() {
-        String email = emailField.getText();
-        String password = pswField.getText();
-        
-         if (email.isEmpty() || password.isEmpty()) {
+public void signIn() throws IOException {
+    String email = emailField.getText();
+    String password = pswField.getText();
+    
+    if (email.isEmpty() || password.isEmpty()) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Missing credentials");
@@ -49,33 +57,53 @@ public class SignInController implements Initializable {
         return;
     }
 
-        Connection conn = DataSource.getInstance().getCnx();
-        UserManagement userManager = new UserManagement(conn);
-        User user = null;   
+    Connection conn = DataSource.getInstance().getCnx();
+    UserManagement userManager = new UserManagement(conn);
+    User user = null;   
 
-        try {
-            user = userManager.getUserByEmailAndPassword(email, password);
-        } catch (SQLException e) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Database Error");
-            alert.setContentText("There was a problem accessing the database. Please try again later.");
-            alert.showAndWait();
-            return;
-        }
+    try {
+        user = userManager.getUserByEmailAndPassword(email, password);
+    } catch (SQLException e) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Database Error");
+        alert.setContentText("There was a problem accessing the database. Please try again later.");
+        alert.showAndWait();
+        return;
+    }
 
-        if (user == null) {
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Invalid credentials");
-            alert.setContentText("The email or password is incorrect.");
-            alert.showAndWait();
-        } else {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Welcome");
-            alert.setHeaderText("Welcome " + user.getFirstName() + " " + user.getLastName() + "!");
-            alert.setContentText("You have successfully logged in.");
-            alert.showAndWait();
-        }
+    if (user == null) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Invalid credentials");
+        alert.setContentText("The email or password is incorrect.");
+        alert.showAndWait();
+    } else {
+        Alert successAlert = new Alert(AlertType.INFORMATION);
+        successAlert.setTitle("Welcome");
+        successAlert.setHeaderText("Welcome " + user.getFirstName() + " " + user.getLastName() + "!");
+        successAlert.setContentText("You have successfully logged in. Your role is : " + user.getPassword()+ ".");
+        successAlert.showAndWait();
+       
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoggedIn.fxml"));
+        Parent root = loader.load();
+        
+        LoggedInController controller = loader.getController();
+        controller.setUser(user);
+
+        //Set the first name and last name labels
+        Label fnamelabel1 = (Label) root.lookup("#fnamelabel1");
+        fnamelabel1.setText(user.getFirstName());
+        Label lnamelabel = (Label) root.lookup("#lnamelabel");
+        lnamelabel.setText(user.getLastName());
+
+        Scene scene = new Scene(root);
+        Stage newStage = new Stage();
+        newStage.setScene(scene);
+        newStage.show();
+        Stage currentStage = (Stage) signinBtn.getScene().getWindow();
+        currentStage.close();
     }
 }
+}
+

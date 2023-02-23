@@ -12,6 +12,8 @@ public class UserManagement {
     public UserManagement(Connection conn) {
         this.conn = conn;
     }
+    
+    
 
     public User getUserByEmailAndPassword(String email, String password) throws SQLException {
         User user = null;
@@ -36,3 +38,5 @@ public class UserManagement {
         return user;
     }
 }
+
+

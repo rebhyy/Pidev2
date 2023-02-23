@@ -24,9 +24,11 @@ public class Testing {
 //        System.out.println(ds3);
 
      
+
 User newUser = new User("John", "rebhi", 123456789, "johndofde@example.com", "admin", "password123");
 ServicePersonne service = new ServicePersonne();
 service.insertPst(newUser);
+service.delete(newUser);
 
 
     }
