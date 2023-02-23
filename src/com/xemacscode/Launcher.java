@@ -30,22 +30,40 @@ public class Launcher extends Application {
     }
 
     public static void main(String[] args) throws SQLException {
-        User newUser2 = new User("Omarss", "testedir", 1234546789, "omadr@example.com", "admin", "password123");
+        //User newUser2 = new User("Omarss", "testedir", 1234546789, "omadr@example.com", "admin", "password123");
         
         
-         User newUser = new User("Omar", "testeir", 123456789, "omar@example.com", "admin", "password123");
+         //User newUser = new User("Omar", "testeir", 123456789, "omar@example.com", "admin", "password123");
         ServicePersonne service = new ServicePersonne() {};
         Servicerole servicer = new Servicerole() {};
-                System.out.println(newUser2.getId());
+                //System.out.println(newUser2.getId());
 
 
-        System.out.println(newUser);
-        service.insertPst(newUser2);
+       // System.out.println(newUser);
+        //service.insertPst(newUser2);
         
-        service.deleteUserByEmail("johndoe@example.com");
-        System.out.println(newUser);
+        
+        
+        
+        //readall test
+List<User> users = service.readAll();
 
-        //launch(args);
+for (User user : users) {
+    System.out.println("ID: " + user.getId());
+    System.out.println("First name: " + user.getFirstName());
+    System.out.println("Last name: " + user.getLastName());
+    System.out.println("Phone number: " + user.getPhoneNumber());
+    System.out.println("Email: " + user.getEmail());
+    System.out.println("Role: " + user.getRole());
+    System.out.println("Password: " + user.getPassword());
+    System.out.println();
+}
+        
+        
+        //service.deleteUserByEmail("johndoe@example.com");
+        //System.out.println(newUser);
+
+        launch(args);
        
         //service.delete(newUser);
 

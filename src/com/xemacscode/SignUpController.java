@@ -1,5 +1,6 @@
 package com.xemacscode;
 
+import entite.PasswordHasher;
 import entite.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -86,10 +87,10 @@ public class SignUpController {
         try {
             phone = Integer.parseInt(phoneString);
         } catch (NumberFormatException e) {
-            System.err.println("Error: Phone number must be an integer");
+            System.err.println("Error: Phone number must be a Number");
             Alert alert = new Alert(AlertType.ERROR);
                     alert.setHeaderText("Invalid Phone Number");
-                    alert.setContentText("Phone number must be an integer. Please try again.");
+                    alert.setContentText("Phone number must be a Number. Please try again.");
                     alert.showAndWait();           
                     return;
            
@@ -105,10 +106,10 @@ public class SignUpController {
         insertPst(user);
         
         
-            Alert alert = new Alert(AlertType.INFORMATION);
-    alert.setHeaderText("Sign up completed!");
-    alert.setContentText("Welcome " + firstName + " " + lastName + "!");
-    alert.showAndWait();
+                Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText("Sign up completed!");
+        alert.setContentText("Welcome " + firstName + " " + lastName + "!");
+        alert.showAndWait();
         
         
     }     
@@ -122,12 +123,14 @@ public class SignUpController {
 
             // Insert new user and role
             String query = "INSERT INTO user (firstName, lastName, phoneNumber, email, password, role) VALUES (?, ?, ?, ?, ?, ?)";
+                    PasswordHasher hasher = new PasswordHasher();
+
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, user.getFirstName());
             statement.setString(2, user.getLastName());
             statement.setInt(3, user.getPhoneNumber());
             statement.setString(4, user.getEmail());
-            statement.setString(5, user.getPassword());
+              statement.setString(5, hasher.hashPassword(user.getPassword()));
             statement.setString(6, user.getRole());
             int rows = statement.executeUpdate();
             if (rows != 1) {

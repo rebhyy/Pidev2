@@ -7,6 +7,10 @@ package service;
 
 import entite.Personne;
 import entite.User;
+import entite.PasswordHasher;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
@@ -14,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import utils.DataSource;
 import service.Servicerole;
+
 
 /**
  *
@@ -45,12 +50,14 @@ public void insertPst(User user) {
 
         // Insert new user and role
         String query = "INSERT INTO user (firstName, lastName, phoneNumber, email, password, role) VALUES (?, ?, ?, ?, ?, ?)";
+        PasswordHasher hasher = new PasswordHasher();
+
         PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         statement.setString(1, user.getFirstName());
         statement.setString(2, user.getLastName());
         statement.setInt(3, user.getPhoneNumber());
         statement.setString(4, user.getEmail());
-        statement.setString(5, user.getPassword());
+        statement.setString(5, hasher.hashPassword(user.getPassword()));
         statement.setString(6, user.getRole());
         int rows = statement.executeUpdate();
         if (rows != 1) {
@@ -125,6 +132,7 @@ public List<User> readAll() {
             user.setPhoneNumber(resultSet.getInt("phoneNumber"));
             user.setEmail(resultSet.getString("email"));
             user.setRole(resultSet.getString("role"));
+            user.setPassword(resultSet.getString("password"));
             userList.add(user);
         }
     } catch (SQLException ex) {
@@ -134,17 +142,18 @@ public List<User> readAll() {
 }
 
 
+
 @Override
 public void update(User t) {
-    String requete = "UPDATE user SET firstName=?, lastName=?, phoneNumber=?, email=?, role=?, password=? WHERE id=?";
+    String requete = "UPDATE user SET firstName=?, lastName=?, phoneNumber=?, password=?, image=? WHERE id=?";
     try (PreparedStatement ps = conn.prepareStatement(requete)) {
         ps.setString(1, t.getFirstName());
         ps.setString(2, t.getLastName());
         ps.setInt(3, t.getPhoneNumber());
-        ps.setString(4, t.getEmail());
-        ps.setString(5, t.getRole());
-        ps.setString(6, t.getPassword());
-        ps.setInt(7, t.getId());
+        ps.setString(4, t.getPassword());
+        ps.setString(5, t.getimage());
+
+        ps.setInt(6, t.getId());
         ps.executeUpdate();
     } catch (SQLException ex) {
         Logger.getLogger(ServicePersonne.class.getName()).log(Level.SEVERE, null, ex);
@@ -266,6 +275,13 @@ public void deleteUserByEmail(String email) throws SQLException {
         ex.printStackTrace();
     }
 }
+
+
+
+
+
+
+
 
 
 }
