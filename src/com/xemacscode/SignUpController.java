@@ -2,13 +2,16 @@ package com.xemacscode;
 
 import entite.PasswordHasher;
 import entite.User;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -18,7 +21,9 @@ import javafx.scene.control.ToggleGroup;
 import service.ServicePersonne;
 import utils.DataSource;
 
-public class SignUpController {
+public class SignUpController implements Initializable{
+
+  
     
         private Connection conn;
 
@@ -49,12 +54,18 @@ public class SignUpController {
 
     @FXML
     private ToggleGroup tgrole;
+      @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        rbGuest.setSelected(true);
+    }
 
     @FXML
     void SubmitSignUp(ActionEvent event) {
         // get the selected role
+        
         RadioButton selectedRole = (RadioButton) tgrole.getSelectedToggle();
-        String role = selectedRole.getText();
+                        String role = selectedRole.getText();
+        
 
         // get user input
         String firstName = tfFirstName.getText();
@@ -70,6 +81,10 @@ public class SignUpController {
                     alert.setContentText("Make sure you typed everything");
                     alert.showAndWait();           
                     return;
+        }else{
+                    
+
+
         }
         
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
@@ -114,6 +129,7 @@ public class SignUpController {
         
     }     
          public void insertPst(User user) {
+             
              Connection conn = DataSource.getInstance().getCnx();
 
          
