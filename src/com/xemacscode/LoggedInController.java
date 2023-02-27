@@ -1,5 +1,6 @@
 package com.xemacscode;
 
+import entite.PasswordHasher;
 import entite.User;
 import java.io.File;
 import java.io.IOException;
@@ -64,11 +65,20 @@ public class LoggedInController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        
+        
+        
       
     }
 
             void setUser(User user) {
-        this.user = user;    }
+        this.user = user;   
+        firstnamefield.setText(user.getFirstName());
+        lastnamefield.setText(user.getLastName());
+        phonefield.setText(String.valueOf(user.getPhoneNumber()));
+        
+            
+            }
             
             
 
@@ -100,8 +110,12 @@ public class LoggedInController implements Initializable {
             
                     @FXML
                     private void saveChanges() {
+                        
+                                                    PasswordHasher hasher = new PasswordHasher();
+
+                                                   
                         // TODO: Save changes to database
-                        User updatedUser = new User(user.getId(), firstnamefield.getText(), lastnamefield.getText(),Integer.parseInt(phonefield.getText()),pwdfield.getText(),selectedFile.getName());
+                        User updatedUser = new User(user.getId(), firstnamefield.getText(), lastnamefield.getText(),Integer.parseInt(phonefield.getText()),hasher.hashPassword(pwdfield.getText()),selectedFile.getName());
                         ServicePersonne service = new ServicePersonne();
                         service.update(updatedUser);
                         

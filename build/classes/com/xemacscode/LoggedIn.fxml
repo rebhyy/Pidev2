@@ -138,7 +138,7 @@
                            </HBox.margin>
                         </Label>
                         <Pane prefHeight="33.0" prefWidth="200.0" />
-                        <TextField fx:id="firstnamefield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                        <TextField fx:id="firstnamefield" prefHeight="31.0" prefWidth="341.0" styleClass="tf_box" stylesheets="@styles.css" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -152,7 +152,7 @@
                            </HBox.margin>
                         </Label>
                         <Pane prefHeight="33.0" prefWidth="200.0" />
-                        <TextField fx:id="lastnamefield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                        <TextField fx:id="lastnamefield" prefHeight="31.0" prefWidth="341.0" styleClass="tf_box" stylesheets="@styles.css" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -166,12 +166,12 @@
                            </HBox.margin>
                         </Label>
                         <Pane prefHeight="33.0" prefWidth="200.0" />
-                        <TextField fx:id="phonefield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                        <TextField fx:id="phonefield" prefHeight="31.0" prefWidth="341.0" styleClass="tf_box" stylesheets="@styles.css" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label prefHeight="28.0" prefWidth="154.0" text="Password" textFill="WHITE">
+                        <Label prefHeight="28.0" prefWidth="154.0" text="New Password" textFill="WHITE">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -180,12 +180,12 @@
                            </HBox.margin>
                         </Label>
                         <Pane prefHeight="33.0" prefWidth="200.0" />
-                        <TextField fx:id="pwdfield" prefHeight="31.0" prefWidth="341.0" styleClass="text-input" stylesheets="@styles.css" />
+                        <TextField fx:id="pwdfield" prefHeight="31.0" prefWidth="341.0" styleClass="tf_box" stylesheets="@styles.css" />
                      </children>
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="savebtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveChanges" prefWidth="100.0" styleClass="button_edit" stylesheets="@styles.css" text="Save Changes" textFill="WHITE">
+                        <Button fx:id="savebtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#saveChanges" prefWidth="180.0" styleClass="button_edit" stylesheets="@styles.css" text="Save Changes" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="400.0" />
                            </HBox.margin>

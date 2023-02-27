@@ -13,6 +13,8 @@
         -fx-background-color: rgba(0,0,0,0);
         -fx-border-width: 0 0 1 0;
         -fx-border-color: #242551;
+            -fx-text-fill: whitesmoke;
+
 
 }
 .button_edit{
@@ -25,7 +27,7 @@
     -fx-background-color: transparent;
 }
 .pane{
-   -fx-background-color: #2196f3; 
+   -fx-background-color: #5c1010; 
 }
 .trans-btn-white-border{
     -fx-background-color: transparent;
@@ -36,7 +38,7 @@
     -fx-text-fill: whitesmoke;
 }
 .white-pane{
-    -fx-background-color: #ffffff;
+    -fx-background-color: #5c1010;
 }
 .blue-panel{
     -fx-background-color: #151928;
@@ -49,12 +51,13 @@
 
 }
 .tf{
-    -fx-background-color: transparent;    
+    -fx-background-color: transparent; 
+    
 }
 .blue-btn{
-    -fx-background-color: #2196f3;
+    -fx-background-color: #eee7e7;
     -fx-background-radius: 5px;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #000000;
 }
 .container {
   display: block;

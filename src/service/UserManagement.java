@@ -1,5 +1,6 @@
 package service;
 
+import entite.PasswordHasher;
 import entite.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,10 +18,12 @@ public class UserManagement {
 
     public User getUserByEmailAndPassword(String email, String password) throws SQLException {
         User user = null;
+                            PasswordHasher hasher = new PasswordHasher();
+
         String query = "SELECT * FROM user WHERE email = ? AND password = ?";
         try (PreparedStatement statement = conn.prepareStatement(query)) {
             statement.setString(1, email);
-            statement.setString(2, password);
+            statement.setString(2, hasher.hashPassword(password));
             try (ResultSet rs = statement.executeQuery()) {
                 if (rs.next()) {
                     user = new User(
