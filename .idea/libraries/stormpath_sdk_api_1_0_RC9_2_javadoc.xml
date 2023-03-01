@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="stormpath-sdk-api-1.0.RC9.2-javadoc">
+    <CLASSES />
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/../../../../Java workshop/stormpath/stormpath-sdk-api-1.0.RC9.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
