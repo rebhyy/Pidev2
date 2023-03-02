@@ -1,6 +1,15 @@
 /* 
     Author     : Rebhy
 */
+
+.primary-color-majoul{
+    -fx-background-color: #5c1010
+}
+
+
+
+
+
 .primary-color-profile{
     -fx-background-color: #13123a
 }
@@ -48,8 +57,13 @@
     -fx-border-color: #DEDEE4;
     -fx-border-width: 0px 0px 1px 0px;
     -fx-text-fill: #ffffff;
-
 }
+.tf_box2{
+    -fx-border-color: #000000;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-text-fill: #000000;
+}
+
 .tf{
     -fx-background-color: transparent; 
     
@@ -122,10 +136,6 @@
   height: 8px;
   border-radius: 50%;
   background: white;
-}
-
-.primary-color-profile{
-    -fx-background-color: #13123a
 }
 
 

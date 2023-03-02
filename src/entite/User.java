@@ -44,6 +44,10 @@ public class User {
         this.password = password;
     }
 
+    public User(int aInt, String string, String string0, String string1, String string2, String string3) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     // Getters and Setters
     public int getId() {
         return id;

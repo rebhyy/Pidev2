@@ -111,7 +111,7 @@ public class LoggedInController implements Initializable {
                     @FXML
                     private void saveChanges() {
                         
-                                                    PasswordHasher hasher = new PasswordHasher();
+                        PasswordHasher hasher = new PasswordHasher();
 
                                                    
                         // TODO: Save changes to database
@@ -137,7 +137,7 @@ public class LoggedInController implements Initializable {
                                         
                                         Stage stage =new Stage();
                                         
-                                                                                Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));        
+                                 Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
                                         Scene scene = new Scene(root);
                                         scene.setFill(Color.TRANSPARENT);
                                         stage.setScene(scene);

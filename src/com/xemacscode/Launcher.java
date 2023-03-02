@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import service.MailService;
 import service.ServicePersonne;
 import service.Servicerole;
 
@@ -45,24 +46,13 @@ public class Launcher extends Application {
         
         
         
-        //readall test
-List<User> users = service.readAll();
 
-for (User user : users) {
-    System.out.println("ID: " + user.getId());
-    System.out.println("First name: " + user.getFirstName());
-    System.out.println("Last name: " + user.getLastName());
-    System.out.println("Phone number: " + user.getPhoneNumber());
-    System.out.println("Email: " + user.getEmail());
-    System.out.println("Role: " + user.getRole());
-    System.out.println("Password: " + user.getPassword());
-    System.out.println();
-}
         
         
         //service.deleteUserByEmail("johndoe@example.com");
         //System.out.println(newUser);
-
+    MailService mailService = new MailService();
+    //mailService.envoyer("a.rebhy10@gmail.com", "test");
         launch(args);
        
         //service.delete(newUser);

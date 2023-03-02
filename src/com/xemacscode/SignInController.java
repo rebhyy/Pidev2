@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import service.LoggedInUser;
+import service.MailService;
 import service.UserManagement;
 import utils.DataSource;
 
@@ -38,10 +39,15 @@ public class SignInController implements Initializable {
 
     @FXML
     private Label lnamelabel;
+    
+     @FXML
+    private Label forgotlabel;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         // TODO
+        
     }
 
 public void signIn() throws IOException {
@@ -105,5 +111,46 @@ public void signIn() throws IOException {
         currentStage.close();
     }
 }
+
+
+
+public void handleForgotPassword() throws SQLException {
+    String email = emailField.getText();
+
+    if (email.isEmpty()) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Missing credentials");
+        alert.setContentText("Please enter your email.");
+        alert.showAndWait();
+        return;
+    }
+
+    Connection conn = DataSource.getInstance().getCnx();
+    UserManagement userManager = new UserManagement(conn);
+    User user = userManager.getUserByEmail(email);
+
+    if (user == null) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Invalid email");
+        alert.setContentText("There is no user with this email address.");
+        alert.showAndWait();
+        return;
+    }
+
+    String newPassword = userManager.resetPassword(email); // reset the user's password
+
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Information");
+    alert.setHeaderText("Password sent");
+    alert.setContentText("Your password has been sent to your email.");
+    alert.showAndWait();
+
+    MailService mailService = new MailService();
+    mailService.envoyer(email, newPassword); // send the new password to the user's email address
 }
+
+
+            }
 
